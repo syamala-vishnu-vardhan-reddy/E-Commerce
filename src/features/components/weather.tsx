@@ -12,17 +12,14 @@ const Weather: React.FC = () => {
   useEffect(() => {
     dispatch(fetchWeatherRequest())
   }, [dispatch])
-
-  if (!loading) {
-    return <div>Loading...{loading} Error fetching data: {error}</div>
-  }
-  if (!error) return <div>Error fetching data: {error}</div>
+  
 
   return (
     <div>
       <h1>Weather Forecast for Vijayawada</h1>
+      <h1>{forecast?.location?.name}</h1>
     </div>
   )
-}
 
+}
 export default Weather
