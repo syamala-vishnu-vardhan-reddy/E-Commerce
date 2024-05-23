@@ -1,10 +1,11 @@
-import Weather from './features/components/weather'
+import Home from "./features/home/home"
+
 
 function App() {
 
   return (
     <>
-    <Weather/>
+    <Home/>
     </>
   )
 }
