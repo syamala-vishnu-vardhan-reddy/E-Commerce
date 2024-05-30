@@ -1,14 +1,13 @@
-import React from 'react';
-import Header from '../home/header/header';
-
-
-
+import React from "react";
+import CategoryComponent from "./category/Category";
+import CarouselLoader from "./productCarocel/productCarosel";
 
 const Home: React.FC = () => {
   return (
-      <Header />
-      
-    
+    <>
+      <CarouselLoader />
+      <CategoryComponent />
+    </>
   );
 };
 

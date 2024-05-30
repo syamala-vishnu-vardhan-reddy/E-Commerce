@@ -1,28 +1,43 @@
 // services.ts
-import BaseService from '../../../apiconfig/baseServices';
+import * as BaseService from "../../../apiconfig/baseServices";
+import {
+  LoginRequest,
+  SignUpRequest,
+  addToCartData,
+  deleteItemFromCart,
+} from "../header/homeTypes";
 
-export default class AuthService extends BaseService {
-
-  constructor(baseURL: string) {
-    super(baseURL);
+export default class AuthService {
+  static async loginUser(request: LoginRequest) {
+    return BaseService.postData("/auth/signIn", request);
   }
 
-  async login(requestBody: any) {
-    try {
-      const response = await this.post('/api/auth/signIn', requestBody);
-      return response;
-    } catch (error) {
-      throw new Error(error.response?.data?.message || 'Login failed');
-    }
+  static async signUp(request: SignUpRequest) {
+    return BaseService.postData("/auth/signup", request);
+  }
+  static async catergoriesInfo() {
+    return BaseService.getData("/category/");
+  }
+  static async productsInfo() {
+    return BaseService.getData("/products/");
+  }
+  static async productInfoById(productId: string) {
+    return BaseService.getData(`/products/${productId}`);
   }
 
-  async signup(requestBody: any) {
-    try {
-      const response = await this.post('/api/auth/signup', requestBody);
-      return response;
-    } catch (error) {
-      throw new Error(error.response?.data?.message || 'Signup failed');
-    }
+  static async AddToCart(request: addToCartData) {
+    return BaseService.postData("/cart/addToCart", request);
   }
-
+  static async cartSummary() {
+    return BaseService.getData("/cart/summary");
+  }
+  static async deleteItem(request: deleteItemFromCart) {
+    return BaseService.updateData("/cart/removeFromCart", request);
+  }
+  static async categoryInfoById(categoryId: string) {
+    return BaseService.getData(`/category/${categoryId}`);
+  }
+  static async searchText(searchId: string) {
+    return BaseService.getData(`/products/searchProducts/${searchId}`);
+  }
 }
