@@ -3,11 +3,12 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./features/home/home";
 import ProductPage from "./features/home/productPage/ProductPage";
-import Header from "./features/home/header/header";
+import Header from "./features/home/header/Header";
 import { Box, CssBaseline } from "@mui/material";
-import CartSummary from "./features/home/cartsummary/cartsummary";
-import CategoryPage from "./features/home/categorypage/categorypage";
+import CartSummary from "./features/home/cartsummary/CartSummary";
+import CategoryPage from "./features/home/categorypage/CategoryPage";
 import SearchResultsPage from "./features/home/searchpage/searchPage";
+import Profile from "./features/home/profile/Profile";
 
 const App: React.FC = () => {
   return (
@@ -27,6 +28,7 @@ const App: React.FC = () => {
               path="/search/:searchQuery"
               element={<SearchResultsPage />}
             />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </Box>
       </Box>

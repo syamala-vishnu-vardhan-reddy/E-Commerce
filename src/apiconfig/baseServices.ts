@@ -5,12 +5,15 @@ const baseURL = "http://localhost:5000/api";
 const userInfoJsonObject = localStorage.getItem("user")
   ? localStorage.getItem("user")
   : "";
+function ParseJsonObject(userInfoJsonObject: any) {
+  if (userInfoJsonObject === "undefined") return true;
+  if (userInfoJsonObject === "null") return true;
+}
+const userInfoParsedObject = ParseJsonObject(userInfoJsonObject)
+  ? {}
+  : JSON.parse(userInfoJsonObject);
 
-const userInfoParsedObject = userInfoJsonObject
-  ? JSON.parse(userInfoJsonObject)
-  : null;
-
-const accessToken = userInfoParsedObject?.jwtToken?.accessToken;
+const accessToken: any = userInfoParsedObject?.jwtToken?.accessToken;
 const config = {
   headers: {
     Authorization: `Bearer ${accessToken}`,
@@ -20,7 +23,7 @@ console.log(config);
 const getData = async (url: string) => {
   try {
     url = baseURL + url;
-    const response = await axios.get(url, config);
+    const response = await axios.get(url);
     return response.data;
   } catch (error) {
     console.log(error);

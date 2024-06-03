@@ -39,7 +39,7 @@ function* handleLogin(): any {
   try {
     const { loginRequest: requestData } = yield select(authState);
     const response = yield call(AuthService.loginUser, requestData);
-    localStorage.setItem("user", JSON.stringify(response));
+
     yield put(loginSuccess(response));
   } catch (error: any) {
     yield put(loginFailure(error.message));

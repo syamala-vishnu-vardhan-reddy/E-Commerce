@@ -75,6 +75,7 @@ const Header: React.FC = () => {
       setSnackbarMessage("Login successful!");
       setSnackbarOpen(true);
       setLoginModalOpen(false);
+      localStorage.setItem("user", JSON.stringify(user));
     } else {
       setIsLoggedIn(false);
     }
@@ -143,7 +144,9 @@ const Header: React.FC = () => {
   function handleVishnuButton() {
     navigate(`/`);
   }
-
+  function handleProfile() {
+    navigate(`/profile`);
+  }
   const handleCategoryClick = (categoryId: string) => {
     navigate(`/category/${categoryId}`);
   };
@@ -237,10 +240,11 @@ const Header: React.FC = () => {
                   <OrdersIcon />
                   Orders
                 </MenuItem>
-                <MenuItem onClick={handleMenuClose}>
+                <MenuItem onClick={handleProfile}>
                   <WishlistIcon />
-                  Wishlist
+                  profile
                 </MenuItem>
+                {}
                 <MenuItem onClick={handleMenuClose}>
                   <RewardsIcon />
                   Rewards
